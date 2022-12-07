@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'allmajors.dart';
 import 'patente_ranking.dart';
+import 'patente_cadastro.dart';
 
 void main() {
   runApp(const MyApp());
@@ -52,10 +53,18 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text('Todos os Majors')),
           ElevatedButton(
               onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => patenteCadastro())));
+              },
+              child: Text('Cadastre sua patente')),
+          ElevatedButton(
+              onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: ((context) => patente())));
               },
-              child: Text('Cadastre sua patente')),
+              child: Text('Ranking de Patentes')),
         ],
       ),
     );

@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_types_as_parameter_names
+// ignore_for_file: avoid_types_as_parameter_names, prefer_const_constructors
 
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -31,7 +31,35 @@ class _patenteState extends State<patente> {
     return est.map((patente) => Patente.fromJson(patente)).toList();
   }
 
+  Widget mostraLista(List<Patente> list1) {
+    return ListView.builder(
+        itemCount: list1.length,
+        itemBuilder: (ctx, i) {
+          return ListTile(
+            leading: Icon(Icons.gamepad),
+            title: Text(list1[i].nome),
+            subtitle: Text(list1[i].patente),
+          );
+        });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('CRUD'),
+      ),
+      body: FutureBuilder<List<Patente>>(
+        future: getData(),
+        builder: (ctx, ss) {
+          if (ss.hasData) {
+            List<Patente> list1 = ss.data!;
+            return mostraLista(list1);
+          } else {
+            return CircularProgressIndicator();
+          }
+        },
+      ),
+    );
   }
 }
