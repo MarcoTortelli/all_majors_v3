@@ -1,4 +1,4 @@
-package com.example.all_majors_v3
+package com.example.all_majors_final_version
 
 import io.flutter.embedding.android.FlutterActivity
 

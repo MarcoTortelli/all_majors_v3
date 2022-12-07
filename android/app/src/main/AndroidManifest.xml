@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.all_majors_v3">
+    package="com.example.all_majors_final_version">
    <application
-        android:label="all_majors_v3"
+        android:label="all_majors_final_version"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

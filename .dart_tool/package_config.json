@@ -32,6 +32,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "confirm_dialog",
+      "rootUri": "file:///C:/tools/flutter/.pub-cache/hosted/pub.dartlang.org/confirm_dialog-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "cupertino_icons",
       "rootUri": "file:///C:/tools/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.5",
       "packageUri": "lib/",
@@ -108,6 +114,12 @@
       "rootUri": "file:///C:/tools/flutter/.pub-cache/hosted/pub.dartlang.org/lints-2.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
+    },
+    {
+      "name": "localization",
+      "rootUri": "file:///C:/tools/flutter/.pub-cache/hosted/pub.dartlang.org/localization-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.13"
     },
     {
       "name": "mask_text_input_formatter",
@@ -206,13 +218,13 @@
       "languageVersion": "2.17"
     },
     {
-      "name": "all_majors_v3",
+      "name": "all_majors_final_version",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     }
   ],
-  "generated": "2022-12-04T17:50:27.127117Z",
+  "generated": "2022-12-07T02:33:52.437096Z",
   "generator": "pub",
   "generatorVersion": "2.18.4"
 }
