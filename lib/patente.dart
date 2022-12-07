@@ -17,5 +17,6 @@ class Patente {
         patente: jsonData['patente'],
         idade: int.parse(jsonData['idade']),
         sexo: jsonData['sexo']);
+        
   }
 }
