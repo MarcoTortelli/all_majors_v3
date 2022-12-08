@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, must_call_super
 
+import 'package:all_majors_final_version/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -202,7 +203,7 @@ class _allmajorsState extends State<allmajors> {
                 'Os Counter-Strike: Global Offensive Major Championships, mais conhecidos por Majors, são torneios de esports de Counter-Strike: Global Offensive patrocinados pela Valve, a produtora do jogo.',
                 style: TextStyle(fontSize: 20),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -258,10 +259,17 @@ class _allmajorsState extends State<allmajors> {
                   ],
                 ),
               ),
-              /*
-             */
             );
           }),
+      floatingActionButton: FloatingActionButton(
+        heroTag: null,
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: ((context) => MyApp())));
+        },
+        child: Icon(Icons.keyboard_backspace_rounded),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

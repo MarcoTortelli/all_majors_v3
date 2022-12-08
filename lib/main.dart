@@ -39,34 +39,40 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => allmajors())));
-              },
-              child: Text('Todos os Majors')),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: ((context) => patenteCadastro())));
-              },
-              child: Text('Cadastre sua patente')),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => patente())));
-              },
-              child: Text('Ranking de Patentes')),
-        ],
-      ),
-    );
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => allmajors())));
+                    },
+                    child: Text('Todos os Majors')),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => patenteCadastro())));
+                    },
+                    child: Text('Cadastre sua patente')),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: ((context) => patente())));
+                    },
+                    child: Text('Ranking de Patentes')),
+              ],
+            )
+          ],
+        ));
   }
 }

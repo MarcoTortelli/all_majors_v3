@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, camel_case_types, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, camel_case_types, prefer_const_literals_to_create_immutables, unused_field, avoid_unnecessary_containers
 
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
@@ -42,17 +42,18 @@ class _patenteCadastroState extends State<patenteCadastro> {
   String dropdownValue = patente_array.first;
   TextEditingController cnome = TextEditingController();
   TextEditingController cpatente = TextEditingController();
+  TextEditingController cidade = TextEditingController();
   TextEditingController csexo = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   String radioButtonItem = 'Masculino';
   int id = 1;
-  int checkBox = 0;
+
   Future<String> addData() async {
     var url = "http://localhost/flutter_crudest/adddata.php";
     var request = http.MultipartRequest('POST', Uri.parse(url));
     request.fields['nome'] = cnome.text;
-    request.fields['patente'] = cnome.text;
-    request.fields['idade'] = cnome.text;
+    request.fields['patente'] = dropdownValue;
+    request.fields['idade'] = cidade.text;
     request.fields['sexo'] = id == 1 ? 'M' : 'F';
     var res = await request.send();
     return Future.value(res.reasonPhrase);
@@ -64,33 +65,139 @@ class _patenteCadastroState extends State<patenteCadastro> {
       appBar: AppBar(
         title: Text('Cadastrar'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: cnome,
+                decoration: InputDecoration(
+                  hintText: 'Digite o Nome',
+                  labelText: 'Digite o nome',
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Informe o nome';
+                  }
+                  if (!RegExp(r'[A-Z][a-z]*').hasMatch(value)) {
+                    return "Por favor, insira um nome válido";
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: cidade,
+                decoration: InputDecoration(
+                  hintText: 'Digite a Idade',
+                  labelText: 'Digite a Idade',
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Informe a idade';
+                  }
+                  if (!RegExp(r'^[0-9]').hasMatch(value)) {
+                    return "Por favor, insira uma idade válida";
+                  }
+                  return null;
+                },
+              ),
+              Container(
+                child: Row(
+                  children: <Widget>[
+                    Radio(
+                      value: 1,
+                      groupValue: id,
+                      onChanged: (val) {
+                        setState(() {
+                          radioButtonItem = 'Masculino';
+                          id = 1;
+                        });
+                      },
+                    ),
+                    Text(
+                      'Masculino',
+                      style: TextStyle(fontSize: 17.0),
+                    ),
+                    Radio(
+                      value: 2,
+                      groupValue: id,
+                      onChanged: (val) {
+                        setState(() {
+                          radioButtonItem = 'Feminino';
+                          id = 2;
+                        });
+                      },
+                    ),
+                    Text(
+                      'Feminino',
+                      style: TextStyle(
+                        fontSize: 17.0,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              DropdownButton(
+                value: dropdownValue,
+                icon: Icon(Icons.arrow_downward),
+                iconSize: 24,
+                elevation: 16,
+                style: TextStyle(color: Colors.blueAccent),
+                underline: Container(
+                  height: 2,
+                  color: Colors.blue,
+                ),
+                onChanged: (newValue) {
+                  setState(() {
+                    dropdownValue = newValue.toString();
+                  });
+                },
+                items:
+                    patente_array.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+            ],
+          )),
+      floatingActionButton: Wrap(
+        direction: Axis.vertical,
         children: [
-          DropdownButton(
-            value: dropdownValue,
-            icon: Icon(Icons.arrow_downward),
-            iconSize: 24,
-            elevation: 16,
-            style: TextStyle(color: Colors.blueAccent),
-            underline: Container(
-              height: 2,
-              color: Colors.blue,
+          Container(
+            margin: EdgeInsets.all(10),
+            child: FloatingActionButton(
+              heroTag: null,
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  addData();
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyApp(),
+                    ),
+                  );
+                }
+              },
+              backgroundColor: Colors.deepPurpleAccent,
+              child: Icon(Icons.save_rounded),
             ),
-            onChanged: (newValue) {
-              setState(() {
-                dropdownValue = newValue.toString();
-              });
-            },
-            items: patente_array.map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            child: FloatingActionButton(
+              heroTag: null,
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => MyApp())));
+              },
+              child: Icon(Icons.keyboard_backspace_rounded),
+            ),
           ),
         ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

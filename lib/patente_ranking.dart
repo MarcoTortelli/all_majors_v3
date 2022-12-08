@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import 'dart:typed_data';
 import 'patente.dart';
+import 'main.dart';
 
 class patente extends StatefulWidget {
   const patente({super.key});
@@ -47,7 +48,7 @@ class _patenteState extends State<patente> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('CRUD'),
+        title: Text('Ranking de Patentes'),
       ),
       body: FutureBuilder<List<Patente>>(
         future: getData(),
@@ -60,6 +61,15 @@ class _patenteState extends State<patente> {
           }
         },
       ),
+      floatingActionButton: FloatingActionButton(
+              heroTag: null,
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => MyApp())));
+              },
+              child: Icon(Icons.keyboard_backspace_rounded),
+            ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
