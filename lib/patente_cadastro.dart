@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'patente_ranking.dart';
+import 'patente_ranking.dart';
 
 class patenteCadastro extends StatefulWidget {
   patenteCadastro({Key? key}) : super(key: key);
@@ -69,11 +70,14 @@ class _patenteCadastroState extends State<patenteCadastro> {
           key: _formKey,
           child: Column(
             children: [
+              Padding(padding: EdgeInsets.all(20)),
               TextFormField(
+                textAlignVertical: TextAlignVertical.center,
                 controller: cnome,
                 decoration: InputDecoration(
                   hintText: 'Digite o Nome',
                   labelText: 'Digite o nome',
+                  contentPadding: EdgeInsets.all(10),
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -85,12 +89,14 @@ class _patenteCadastroState extends State<patenteCadastro> {
                   return null;
                 },
               ),
+              Padding(padding: EdgeInsets.all(20)),
               TextFormField(
+                textAlignVertical: TextAlignVertical.center,
                 controller: cidade,
                 decoration: InputDecoration(
-                  hintText: 'Digite a Idade',
-                  labelText: 'Digite a Idade',
-                ),
+                    hintText: 'Digite a Idade',
+                    labelText: 'Digite a Idade',
+                    contentPadding: EdgeInsets.all(10)),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Informe a idade';
@@ -101,8 +107,10 @@ class _patenteCadastroState extends State<patenteCadastro> {
                   return null;
                 },
               ),
+              Padding(padding: EdgeInsets.all(20)),
               Container(
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Radio(
                       value: 1,
@@ -137,6 +145,7 @@ class _patenteCadastroState extends State<patenteCadastro> {
                   ],
                 ),
               ),
+              Padding(padding: EdgeInsets.all(20)),
               DropdownButton(
                 value: dropdownValue,
                 icon: Icon(Icons.arrow_downward),
@@ -160,6 +169,7 @@ class _patenteCadastroState extends State<patenteCadastro> {
                   );
                 }).toList(),
               ),
+              Padding(padding: EdgeInsets.all(20)),
             ],
           )),
       floatingActionButton: Wrap(
@@ -175,7 +185,7 @@ class _patenteCadastroState extends State<patenteCadastro> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MyApp(),
+                      builder: (context) => patente(),
                     ),
                   );
                 }

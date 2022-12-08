@@ -17,11 +17,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Trabalho 3 Trimestre',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Trabalho 3 Trimestre'),
+      debugShowCheckedModeBanner: false,
+      title: 'Trabalho 3º Trimestre',
+      theme: ThemeData(primarySwatch: Colors.green),
+      home: const MyHomePage(title: 'Trabalho 3º Trimestre'),
     );
   }
 }
@@ -39,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.grey[700],
         appBar: AppBar(
           title: Text(widget.title),
         ),
@@ -48,28 +48,42 @@ class _MyHomePageState extends State<MyHomePage> {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => allmajors())));
-                    },
-                    child: Text('Todos os Majors')),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => patenteCadastro())));
-                    },
-                    child: Text('Cadastre sua patente')),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: ((context) => patente())));
-                    },
-                    child: Text('Ranking de Patentes')),
+                Container(
+                  width: 300,
+                  height: 150,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => allmajors())));
+                      },
+                      child: Text('Todos os Majors')),
+                ),
+                Container(
+                  width: 300,
+                  height: 150,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => patenteCadastro())));
+                      },
+                      child: Text('Cadastre sua patente')),
+                ),
+                Container(
+                  width: 300,
+                  height: 150,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => patente())));
+                      },
+                      child: Text('Ranking de Patentes')),
+                ),
               ],
             )
           ],
